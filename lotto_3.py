@@ -1,4 +1,5 @@
 import random
+
 barrels = 90  #бочонков
 rows = 3      #строк в карточке
 cols = 5      #цифр в строке
@@ -6,6 +7,7 @@ posits = 9    #всего позиций
 gamers = [['Вундеркинд', False], ['Железяка', True], ['Железяка 2', True]]
 
 class Card:
+
     def __init__(self, gamer):
         self.positions = []     
         self.numbers = random.sample(range(1, barrels+1), rows * cols)
@@ -17,6 +19,7 @@ class Card:
         self.gamer = gamer
 
     def show(self):
+
         print('Карточка: ', self.gamer[0])
         print('#'*(posits*3-1))
         for i in range(0, rows):
@@ -38,7 +41,7 @@ class Card:
             ans = bar_num in self.numbers
         else:
             print('Вынули бочонок: ', bar_num, ' (В мешке:', rest_num,')')
-            ans =  input('Зачеркнуть цифру? (у/n) ') in 'ДдYy'
+            ans =  input('Вычеркнуть цифру? (у/n) ') in 'ДдYy'
         return ans
 
     def cover(self, bar_num, decis):
@@ -63,14 +66,14 @@ class Bag:
     def next_barrel(self):
         self.cur_pos += 1
         if self.cur_pos >= barrels:
-            raise Exception('Бочонки RUN OUT')
+            raise Exception('Бочонки RUN OUT - Кончились :)')
         return self.bag[self.cur_pos], barrels-self.cur_pos-1
 
 def new_game():
     games = []
     for gamer in gamers:
         games.append(Card(gamer))
-    print('New game>><<>>>')
+    print('>><<>>>  New game  >><<>>>')
     loop = True
     bag = Bag()
     msg = ''
