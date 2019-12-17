@@ -1,6 +1,7 @@
 import pytest
 import unittest
 import random
+
 from lotto_3 import Card, Bag
 
 class TestCard(unittest.TestCase):
@@ -41,12 +42,9 @@ class TestBag(unittest.TestCase):
         self.assertNotEqual(self.bag.bag[0], self.bag.bag[-1])
         while self.bag.cur_pos < 89:
             self.assertNotEqual(self.bag.next_barrel(), self.bag.next_barrel())
-        with pytest.raises(Exception, match='Бочонки RUN OUT'):
+        with pytest.raises(Exception, match='Мешок пуст'):
             self.bag.next_barrel()
         try:
             self.bag.next_barrel()
         except:
             self.assertRaises(Exception)
-
-if __name__ == '__main__':
-    unittest.main()
