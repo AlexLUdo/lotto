@@ -1,4 +1,4 @@
-from lotto_3 import *
+from lotto_31 import *
 def new_game():
     games = []
     for gamer in gamers:
@@ -22,5 +22,4 @@ def new_game():
             msg = 'GAME OVER!'
     print(msg)
 
-if __name__ == "__main__":
-    new_game()
+new_game()

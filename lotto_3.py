@@ -18,8 +18,19 @@ class Card:
         self.used = []
         self.gamer = gamer
 
-    def show(self):
+    def __str__(self):
+       return [self.numbers, self.used]
 
+    def __eq__(self, other):
+        return len(self.used) == len(other.used)
+
+    def __gt__(self, other):
+        return len(self.used) > len(other.used)
+
+    def __ge__(self, other):
+        return len(self.used) >= len(other.used)
+
+    def show(self):
         print('Карточка: ', self.gamer[0])
         print('#'*(posits*3-1))
         for i in range(0, rows):
@@ -34,6 +45,7 @@ class Card:
                     string += '   '
             print(string)
         print('#' * (posits*3-1))
+        return None
 
     def decision(self, bar_num, rest_num):
         if self.gamer[1]:
@@ -63,8 +75,15 @@ class Bag:
         self.cur_pos = -1
         self.bag = random.sample(range(1, barrels + 1), barrels)
 
+    def __str__(self):
+        return [self.bag, self.cur_pos]
+
+    def __eq__(self, other):
+        return self.cur_pos == other.cur_pos
+
     def next_barrel(self):
         self.cur_pos += 1
+
         if self.cur_pos >= barrels:
             raise Exception('Мешок пуст')
         return self.bag[self.cur_pos], barrels-self.cur_pos-1
